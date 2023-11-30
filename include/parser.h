@@ -1,6 +1,10 @@
 #ifndef GRAPH_QL_PARSER_H
 #define GRAPH_QL_PARSER_H
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 #include "request.h"
 #include "malloc.h"
 

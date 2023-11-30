@@ -3,15 +3,20 @@
 
 int main(int argc, char **argv) {
 
-    char *req;
+    FILE *file;
+    file = fopen("request.txt", "r");
+    char *req = calloc(MAX_REQUEST_SIZE, sizeof(char));
+    fread(req, sizeof(char), MAX_REQUEST_SIZE, file);
 
-    // TODO read req from console or from file
+    printf("Your request:\n%s\n\n", req);
 
-    struct request *request = malloc(sizeof(struct request *));
+    struct request *request = malloc(sizeof(struct request));
+    enum parser_status status = parse_request(req, request);
+    if (status == PARSE_OK) get_request_view(request);
 
-    parse_request(req, request);
-
-    get_request_view(request);
+    fclose(file);
+    free(req);
+    free(request);
 
     return 0;
 }
